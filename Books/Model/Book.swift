@@ -20,11 +20,20 @@ struct Book: Hashable, Codable, Identifiable {
     var price: String
     var author: String
     var description: String
+    var isFavorite: Bool
+    var isFeatured: Bool
+    
+    var category: Category
+    enum Category: String, CaseIterable, Codable {
+        case math = "Math"
+        case science = "Science"
+        case novel = "Novel"
+        
+    }
     
     private var imageName: String
-    
-    //to use struct Image you must import SwiftUI
-    var image: Image {
+    var image: Image{
         Image(imageName)
     }
+    
 }

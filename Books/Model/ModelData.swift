@@ -6,9 +6,25 @@
 //
 
 import Foundation
+import Combine
 
+final class ModelData: ObservableObject{
+    @Published var books: [Book] = load("bookData.json")
+    
+    @Published var profile = Profile.default
+    
+    var features: [Book]{
+        //$0 means for each landmark
+        books.filter{ $0.isFeatured }
+    }
+    
+    //declares datatype strings of dictionary
+    var categories: [String: [Book]]{
+        Dictionary(
+            grouping: books, by: {$0.category.rawValue})
+    }
 
-var books: [Book] = load("bookData.json")
+}
 
 func load<T: Decodable> (_ filename: String) -> T {
     let data: Data

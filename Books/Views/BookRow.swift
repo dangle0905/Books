@@ -18,11 +18,17 @@ struct BookRow: View {
             Text(book.name)
             
             Spacer()
+            
+            if book.isFavorite{
+                Image(systemName: "star.fill").foregroundColor(.yellow)
+            }
         }
     }
 }
 
 struct BookRow_Previews: PreviewProvider {
+    static var books = ModelData().books
+    
     static var previews: some View {
         Group{
             BookRow(book: books[0])

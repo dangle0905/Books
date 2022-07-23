@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct BookDetail: View {
+    @EnvironmentObject var modelData : ModelData
     var book: Book
+    
+    var bookIndex : Int {
+        modelData.books.firstIndex(where: {$0.id == book.id})!
+    }
 
     var body: some View {
         ScrollView {
@@ -21,9 +26,13 @@ struct BookDetail: View {
                 .padding(.bottom, -150)
             
             VStack(alignment: .leading) {
-                Text(book.name)
-                    .font(.title)
-                    .foregroundColor(.black)
+                HStack{
+                    Text(book.name)
+                        .font(.title)
+                        .foregroundColor(.black)
+                    FavoriteButton(isSet: $modelData.books[bookIndex].isFavorite)
+                }
+                
                 
                 HStack {
                     Text("Author")
@@ -55,6 +64,6 @@ struct BookDetail: View {
 
 struct BookDetail_Previews: PreviewProvider {
     static var previews: some View {
-        BookDetail(book: books[0])
+        BookDetail(book: ModelData().books[0])
     }
 }
