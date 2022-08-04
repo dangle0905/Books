@@ -17,6 +17,8 @@ struct ProfileSummary: View {
                 .font(.title)
             Text("Notifications: \(profile.prefersNotifications ? "On": "Off")")
             Text("Seassonal Photo: \(profile.seasonalPhoto.rawValue)")
+            Text("Last Update Date: \(profile.updateDate)")
+
         }
 
         
