@@ -10,17 +10,24 @@ import SwiftUI
 struct ProfileSummary: View {
     var profile: Profile
     
+    
     var body: some View {
-        VStack(alignment: .leading, spacing: 10){
+        VStack(alignment: .leading, spacing: 12) {
             Text(profile.username)
                 .bold()
                 .font(.title)
+                .foregroundColor(.brown)
+    
             Text("Notifications: \(profile.prefersNotifications ? "On": "Off")")
-            Text("Seassonal Photo: \(profile.seasonalPhoto.rawValue)")
-            Text("Last Update Date: \(profile.updateDate)")
+                .foregroundColor(.accentColor)
+
+            
+            Text("Seasonal Photo: \(profile.seasonalPhoto.rawValue)")
+
+            Text("Last Update Date:\(profile.updateDate)")
+                .foregroundColor(.secondary)
 
         }
-
         
     }
 }
